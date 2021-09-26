@@ -14,20 +14,21 @@ function AddAlbum(props) {
     } else temp[e.target.name] = e.target.value;
     setdata(temp);
   };
-  const imageUpload = async () => {
-    let uploadData = new FormData();
-    uploadData.append("title", data?.album_title);
-    uploadData.append("image", data?.album_cover);
-    let response = await axios({
-      method: "post",
-      url: "https://api.imgur.com/3/upload",
-      headers: {
-        Authorization: "Client-ID b650d94d86ca32d",
-      },
-      data: uploadData,
-    });
-    console.log("image upload", response);
-  };
+  // const imageUpload = async () => {
+  //   let uploadData = new FormData();
+  //   uploadData.append("title", data?.album_title);
+  //   uploadData.append("image", data?.album_cover);
+  //   let response = await axios({
+  //     method: "post",
+  //     url: "https://api.imgur.com/3/upload",
+  //     headers: {
+  //       Authorization: "Client-ID b650d94d86ca32d",
+  //     },
+  //     data: uploadData,
+  //   });
+  //   console.log("image upload", response);
+  // };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log("mama", { ...data, id: props?.newId });
@@ -44,7 +45,7 @@ function AddAlbum(props) {
   };
   return (
     <div className="AddAlbum">
-      <h1 className="formHeader">Album creation</h1>
+      <h1 className="formHeader">Add Album Here</h1>
       <form className="form">
         <div className="form_left">
           <label className="fileUpload">
