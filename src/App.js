@@ -1,7 +1,12 @@
 import { useState } from "react";
 import "./App.css";
 import AddAlbum from "./AddAlbum";
+import Navbar from "./Navbar"
 import Albums from "./Albums";
+import { BrowserRouter as Router, Route,Switch } from "react-router-dom";
+
+// import { Link } from "react-router-dom";
+
 
 function App() {
   const [albums, setAlbums] = useState([
@@ -75,6 +80,23 @@ function App() {
     temp.push(data);
     setAlbums(temp);
   };
+  // const [foundAlbums, setFoundAlbums] = useState([])
+  // const handleSearchAlbum = (text) => {
+
+  //   const filteredBasedOnTitle = albums.filter((item) => item.title.toLowerCase() == text.toLowerCase())
+  //   const filteredBasedOnArtist = albums.filter((item) => item.artist.toLocaleLowerCase() == text.toLowerCase())
+  //   if(filteredBasedOnTitle.length > 0){
+  //     setFoundAlbums(filteredBasedOnTitle)
+  //   }else if(filteredBasedOnArtist.length > 0) {
+  //     setFoundAlbums(filteredBasedOnArtist)
+  //   }else{
+  //     setFoundAlbums("")
+  //   }
+    
+   
+  // }
+  // console.log(foundAlbums)
+
   const handleDelete = (id) => {
     let temp = [...albums];
     let finalAfterDelete = temp.filter((x) => x.id !== id);
@@ -82,12 +104,21 @@ function App() {
   };
   return (
     <div className="App">
-      <AddAlbum newId={albums.length + 1} handleAdd={handleAddAlbum} />
-      <Albums
-        title={"Albums"}
-        delete={handleDelete}
-        data={albums.sort((a, b) => b.id - a.id)}
-      />
+      <Router>
+        <Navbar />
+        
+        <AddAlbum newId={albums.length + 1} handleAdd={handleAddAlbum} />
+       
+        <Albums
+          title={"Albums"}
+          delete={handleDelete}
+          data={albums.sort((a, b) => b.id - a.id)}
+          // foundAlbums={foundAlbums} handleSearchAlbum={handleSearchAlbum}  albumList={albums}
+        />
+      
+        
+      </Router>
+
     </div>
   );
 }
